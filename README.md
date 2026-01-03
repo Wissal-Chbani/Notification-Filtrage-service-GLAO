@@ -16,7 +16,17 @@ This project is a Spring Boot backend application for managing notifications. It
 git clone https://github.com/Wissal-Chbani/Notification-Filtrage-service-GLAO
 cd Notification-Filtrage-service-GLAO
 ```
-2. Start the application using Docker Compose:
+
+2. Configure Mongo Express credentials
+
+   1. In the project root, create a file named `.env`.
+   2. Add your Mongo Express username and password inside the `.env` file like this:
+   ```bash
+   ME_CONFIG_BASICAUTH_USERNAME=your_username
+   ME_CONFIG_BASICAUTH_PASSWORD=your_password
+   ```
+
+3. Start the application using Docker Compose:
 
 ```bash
 Start the application using Docker Compose:
