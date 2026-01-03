@@ -29,7 +29,7 @@ cd Notification-Filtrage-service-GLAO
 3. Start the application using Docker Compose:
 
 ```bash
-Start the application using Docker Compose:
+docker-compose up --build
 ```
 
 This will start three containers:
