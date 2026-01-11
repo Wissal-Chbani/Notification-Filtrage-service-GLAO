@@ -29,3 +29,37 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package
+
+    docker:
+      name: Build & Push Docker Image
+      runs-on: ubuntu-latest
+      needs: build
+
+      if: github.ref == 'refs/heads/master'
+
+      steps:
+        - name: Checkout source code
+          uses: actions/checkout@v4
+  
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ secrets.AWS_REGION }}
+
+        - name: Login to Amazon ECR
+          uses: aws-actions/amazon-ecr-login@v2
+  
+        - name: Build Docker image
+          run: |
+            docker build -t notification-service .
+
+        - name: Tag Docker image
+          run: |
+            docker tag notification-service:latest ${{ secrets.ECR_REPOSITORY }}:latest
+  
+        - name: Push Docker image to ECR
+          run: |
+            docker push ${{ secrets.ECR_REPOSITORY }}:latest
+
