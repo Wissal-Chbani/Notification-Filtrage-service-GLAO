@@ -1,7 +1,6 @@
                                     # Notification Service
 
 This project is a Spring Boot backend application for managing notifications. It uses MongoDB for storage and comes with a Docker setup for easy testing.
-Honestly, I just want to test jenkins so I have to make and push some changes, now im tapping this none sense
 
 ## Requirements
 
